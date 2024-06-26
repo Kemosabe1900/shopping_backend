@@ -49,9 +49,6 @@ public class CartService {
     }
 
 
-    public void addToCart(CartItem cartItem) {
-        cartItemDAO.save(cartItem);
-    }
 
     public void removeFromCart(Long id) {
         cartItemDAO.deleteById(id);
@@ -70,7 +67,7 @@ public class CartService {
     }
 
 
-    public void addItem(CartItem item, Cart cart) {
+    public void addToCart(CartItem item, Cart cart) {
 
         for (CartItem cartItem : cart.getItems()) {
             if (cartItem.getProduct().getId() == item.getProduct().getId()) {
@@ -78,6 +75,7 @@ public class CartService {
             }
         }
         cart.getItems().add(item); // Item is not in the cart, so we add it
+        cartItemDAO.save(item);
     }
 
     public void removeItem(Cart cart, CartItem item) {

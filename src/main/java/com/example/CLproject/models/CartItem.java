@@ -4,7 +4,6 @@ package com.example.CLproject.models;
 import jakarta.persistence.*;
 
 @Entity
-
 public class CartItem {
 
     @Id
@@ -18,6 +17,10 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
     private int quantity;
 
@@ -56,11 +59,21 @@ public class CartItem {
         this.quantity = quantity;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     @Override
     public String toString() {
         return "CartItem{" +
                 "id=" + id +
                 ", product=" + product +
+                ", user=" + user +
+                ", cart=" + cart +
                 ", quantity=" + quantity +
                 '}';
     }

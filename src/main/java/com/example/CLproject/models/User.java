@@ -5,11 +5,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Collections;
 
 @Entity
+@Component
 public class User implements UserDetails {
 
     @Id

@@ -57,7 +57,10 @@ public class UserService {
         return user;
     }
 
+    public User getUserById(int userId){
+        return userDAO.findById(userId);
 
+    }
 
     @PostMapping("/createUser")
     public ResponseEntity<Object> createUser( CreateUserDTO input) {
@@ -187,6 +190,7 @@ public class UserService {
                     .body("Failed to Login: " + e.getMessage());
         }
     }
+
 
 //    public void createAdminUser(){
 //        User admin = new User();

@@ -3,8 +3,12 @@ package com.example.CLproject.models;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
+
+@Entity
+@Table(name = "carts")
 public class Cart {
 
     @Id
@@ -17,6 +21,10 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> items;
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
     public Cart(User user) {
         this.user = user;
@@ -48,5 +56,21 @@ public class Cart {
         this.items = items;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
 
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "id=" + id +
+                ", user=" + user +
+                ", items=" + items +
+                ", cart=" + cart +
+                '}';
+    }
 }
